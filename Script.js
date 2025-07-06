@@ -1,5 +1,6 @@
 let userlist = document.getElementById("userList");
-const arr = [
+let searchInput = document.getElementById("searchInput");
+const users = [
     {
         profileurl: "user-128-32.png",
         name: "John Doe",
@@ -21,7 +22,9 @@ const arr = [
         email: "zubbu@gmail.com"
     }
 ]
-arr.map(function (obj) {
+function renderUsers(arr){
+userlist.innerHTML = ""; // Clear previous user list
+    arr.map(function (obj) {
     let {profileurl, name, email} = obj;
     let ele = document.createElement('div');
     ele.className = "userinfoContainer"
@@ -35,3 +38,14 @@ arr.map(function (obj) {
         </div>`
     userlist.append(ele);
 })
+}
+renderUsers(users);
+function filterUsers(e){
+    let searchValue = e.target.value;
+    let filteredUsers = users.filter(obj => {
+        return obj.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+               obj.email.toLowerCase().includes(searchValue.toLowerCase());
+    });
+    renderUsers(filteredUsers);
+}
+searchInput.addEventListener('input', filterUsers);
