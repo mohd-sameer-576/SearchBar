@@ -88,3 +88,8 @@ body{
     font-size: 14px;
     color: #ccc;
 }
+.user-list .not-found-message{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
